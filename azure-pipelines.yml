@@ -1,0 +1,43 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - develop
+  paths:
+    exclude:
+    - README.md
+
+pool:
+  name: Hosted macOS
+  demands: msbuild
+
+variables:
+  solution: '**/Rg.Plugins.Popup.sln'
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.artifactStagingDirectory)/$(BuildConfiguration)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: MSBuild@1
+  displayName: 'Build solution Rg.Plugins.Popup.sln'
+  inputs:
+    solution: '$(solution)'
+    configuration: '$(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'nuspec/Rg.Plugins.Popup.nuspec'
+    versioningScheme: 'byBuildNumber'
+
