@@ -21,7 +21,7 @@ init:
 before_build:
     - nuget restore %solution_dir%
 build_script:
-    - msbuild %solution_dir%/Rg.Plugins.Popup.sln /t:Build /p:Configuration=Publish /p:Platform="Any CPU"
+    - msbuild %solution_dir%/Rg.Plugins.Popup-Library.sln /t:Build /p:Configuration=Publish /p:Platform="Any CPU"
 after_build:
     - nuget pack %nuspec_dir%/Rg.Plugins.Popup.nuspec -Version %APPVEYOR_BUILD_VERSION%
 artifacts:
