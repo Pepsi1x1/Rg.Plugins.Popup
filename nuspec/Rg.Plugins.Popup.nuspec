@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Rg.Plugins.Popup</id>
+        <id>Rg.Plugins.Popup.Pepsi1x1</id>
         <version>$version$</version>
-        <title>Popup Page Plugin for Xamarin Forms</title>
-        <authors>Kirill Lyubimov</authors>
+        <title>Fork of Popup Page Plugin for Xamarin Forms</title>
+        <authors>Kirill Lyubimo, David Thompson</authors>
         <owners>rotorgames</owners>
-        <projectUrl>https://github.com/rotorgames/Rg.Plugins.Popup</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/rotorgames/Rg.Plugins.Popup/master/icons/icon.png</iconUrl>
-        <licenseUrl>https://github.com/rotorgames/Rg.Plugins.Popup/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/Pepsi1x1/Rg.Plugins.Popup</projectUrl>
+        <iconUrl>https://github.com/Pepsi1x1/Rg.Plugins.Popup/master/icons/icon.png</iconUrl>
+        <licenseUrl>https://github.com/Pepsi1x1/Rg.Plugins.Popup/blob/master/LICENSE.md</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Plugin for Xamarin forms. Allows you to open any page as a popup.
         
 Release Notes: https://github.com/rotorgames/Rg.Plugins.Popup/releases</description>
-        <tags>Xamarin.Forms xamarin forms popup page modal</tags>
+        <tags>Xamarin.Forms xamarin forms popup page modal fork</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="2.5.0.121934" />
+            <dependency id="Xamarin.Forms" version="4.2.0.815419" />
         </dependencies>
     </metadata>
     <files>
       <file src="readme.txt" target="readme.txt" /> 
       <!--PCL-->
-      <file src="..\src\Rg.Plugins.Popup\bin\Release\netstandard1.0\Rg.Plugins.Popup.dll" target="lib\netstandard1.0" />
-      <file src="..\src\Rg.Plugins.Popup\bin\Release\netstandard1.0\Rg.Plugins.Popup.pdb" target="lib\netstandard1.0" />
+      <file src="..\src\Rg.Plugins.Popup\bin\Release\netstandard2.0\Rg.Plugins.Popup.dll" target="lib\netstandard2.0" />
+      <file src="..\src\Rg.Plugins.Popup\bin\Release\netstandard2.0\Rg.Plugins.Popup.pdb" target="lib\netstandard2.0" />
       <!--Android-->
       <file src="..\src\Rg.Plugins.Popup.Droid\bin\Release\Rg.Plugins.Popup.dll" target="lib\MonoAndroid" />
       <file src="..\src\Rg.Plugins.Popup.Droid\bin\Release\Rg.Plugins.Popup.pdb" target="lib\MonoAndroid" />

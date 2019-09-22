@@ -25,7 +25,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Rg.Plugins.Popup.WinShared"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspec", "nuspec", "{513DF223-8613-44A0-A67E-2C05601D5A62}"
 	ProjectSection(SolutionItems) = preProject
-		..\nuspec\Rg.Plugins.Popup.nuspec = ..\nuspec\Rg.Plugins.Popup.nuspec
 		..\nuspec\readme.txt = ..\nuspec\readme.txt
 	EndProjectSection
 EndProject
