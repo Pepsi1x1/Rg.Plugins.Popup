@@ -30,7 +30,13 @@ namespace Rg.Plugins.Popup.Services
             }
         }
 
-        public IReadOnlyList<PopupPage> PopupStack => _popupStack;
+        public IReadOnlyList<PopupPage> PopupStack
+        {
+            get
+            {
+                    return _popupStack.AsReadOnly();
+            }
+        }
 
         public PopupNavigationImpl()
         {
