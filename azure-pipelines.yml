@@ -12,8 +12,8 @@ pool:
   demands: msbuild
 
 variables:
-  solution: '**/Rg.Plugins.Popup.sln'
-  buildConfiguration: 'Release'
+  solution: '**/Rg.Plugins.Popup-Library.sln'
+  buildConfiguration: 'Publish'
   outputDirectory: '$(build.artifactStagingDirectory)/$(BuildConfiguration)'
 
 steps:
@@ -24,10 +24,15 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: MSBuild@1
-  displayName: 'Build solution Rg.Plugins.Popup.sln'
+  displayName: 'Build solution Rg.Plugins.Popup-Library.sln'
   inputs:
     solution: '$(solution)'
     configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'nuspec/Rg.Plugins.Popup.nuspec'
 
 - task: PublishBuildArtifacts@1
   inputs:
@@ -37,7 +42,10 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    command: 'pack'
-    packagesToPack: 'nuspec/Rg.Plugins.Popup.nuspec'
-    versioningScheme: 'byBuildNumber'
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'NuGet'
+
+
 
