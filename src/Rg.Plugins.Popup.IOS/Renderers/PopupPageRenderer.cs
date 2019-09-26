@@ -84,17 +84,24 @@ namespace Rg.Plugins.Popup.IOS.Renderers
         {
             base.ViewWillAppear(animated);
 
-            UnregisterAllObservers();
+            this.UnregisterAllObservers();
 
-            _willChangeFrameNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyBoardUpNotification);
-            _willHideNotificationObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyBoardDownNotification);
+            _willChangeFrameNotificationObserver = UIKeyboard.Notifications.ObserveWillShow((sender, notification) =>
+            {
+                KeyBoardUpNotification(notification.Notification);
+            });
+
+            _willHideNotificationObserver = UIKeyboard.Notifications.ObserveWillHide((sender, notification) =>
+            {
+                KeyBoardDownNotification(notification.Notification);
+            });
         }
 
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
 
-            UnregisterAllObservers();
+            this.UnregisterAllObservers();
         }
 
         #endregion
