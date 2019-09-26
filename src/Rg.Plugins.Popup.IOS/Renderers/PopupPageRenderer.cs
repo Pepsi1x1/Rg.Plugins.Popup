@@ -157,6 +157,9 @@ namespace Rg.Plugins.Popup.IOS.Renderers
             if (_willHideNotificationObserver != null)
                 NSNotificationCenter.DefaultCenter.RemoveObserver(_willHideNotificationObserver);
 
+            _willChangeFrameNotificationObserver?.Dispose();
+            _willHideNotificationObserver?.Dispose();
+
             _willChangeFrameNotificationObserver = null;
             _willHideNotificationObserver = null;
         }
@@ -168,7 +171,7 @@ namespace Rg.Plugins.Popup.IOS.Renderers
             ViewDidLayoutSubviews();
         }
 
-        private async void KeyBoardDownNotification(NSNotification notifi)
+        private void KeyBoardDownNotification(NSNotification notifi)
         {
             NSObject duration;
             var canAnimated = notifi.UserInfo.TryGetValue(UIKeyboard.AnimationDurationUserInfoKey, out duration);
@@ -177,11 +180,14 @@ namespace Rg.Plugins.Popup.IOS.Renderers
 
             if (canAnimated)
             {
-                //It is needed that buttons are working when keyboard is opened. See #11
-                await Task.Delay(70);
+                Device.InvokeOnMainThreadAsync(async () =>
+                {
+                    //It is needed that buttons are working when keyboard is opened. See #11
+                    await Task.Delay(70);
 
-                if(!_isDisposed)
-                    await UIView.AnimateAsync((double)(NSNumber)duration, OnKeyboardAnimated);
+                    if (!this._isDisposed)
+                        await UIView.AnimateAsync((double)(NSNumber)duration, OnKeyboardAnimated);
+                });
             }
             else
             {
