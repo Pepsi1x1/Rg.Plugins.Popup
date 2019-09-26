@@ -55,7 +55,7 @@ namespace Rg.Plugins.Popup.IOS.Renderers
             var subview = view.HitTest(location, null);
             if (subview == view)
             {
-                CurrentElement.SendBackgroundClick();
+                CurrentElement.SendBackgroundClick().Wait();
             }
         }
 

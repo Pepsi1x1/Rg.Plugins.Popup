@@ -35,7 +35,7 @@ namespace Rg.Plugins.Popup.IOS.Platform
 
             if (formsElement.BackgroundInputTransparent && renderer.NativeView == hitTestResult)
             {
-                formsElement.SendBackgroundClick();
+                formsElement.SendBackgroundClick().Wait();
                 return null;
             }
 
