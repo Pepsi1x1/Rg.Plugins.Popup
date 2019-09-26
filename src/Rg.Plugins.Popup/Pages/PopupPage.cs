@@ -303,7 +303,7 @@ namespace Rg.Plugins.Popup.Pages
             var isClose = OnBackgroundClicked();
             if (isClose)
             {
-                await PopupNavigation.Instance.RemovePageAsync(this);
+                await PopupNavigation.Instance.RemovePageAsync(this).ConfigureAwait(false);
             }
         }
 
