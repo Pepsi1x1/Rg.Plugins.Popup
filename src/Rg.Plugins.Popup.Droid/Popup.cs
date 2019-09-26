@@ -39,7 +39,7 @@ namespace Rg.Plugins.Popup
 
                 if (!isPreventClose)
                 {
-                    Device.BeginInvokeOnMainThread(async () =>
+                    Device.InvokeOnMainThreadAsync(async () =>
                     {
                         await popupNavigationInstance.PopAsync();
                     });

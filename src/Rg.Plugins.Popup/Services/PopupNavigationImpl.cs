@@ -58,7 +58,7 @@ namespace Rg.Plugins.Popup.Services
 
                 _popupStack.Add(page);
 
-                var task = InvokeThreadSafe(async () =>
+                var task = Device.InvokeOnMainThreadAsync(async () =>
                 {
                     animate = CanBeAnimated(animate);
 
@@ -107,7 +107,7 @@ namespace Rg.Plugins.Popup.Services
                 var popupTasks = PopupStack.ToList().Select(page => RemovePageAsync(page, animate));
 
                 return Task.WhenAll(popupTasks);
-            };
+            }
         }
 
         public Task RemovePageAsync(PopupPage page, bool animate = true)
@@ -123,7 +123,7 @@ namespace Rg.Plugins.Popup.Services
                 if (page.DisappearingTransactionTask != null)
                     return page.DisappearingTransactionTask;
 
-                var task = InvokeThreadSafe(async () =>
+                var task = Device.InvokeOnMainThreadAsync(async () =>
                 {
                     if (page.AppearingTransactionTask != null)
                         await page.AppearingTransactionTask;
@@ -182,30 +182,6 @@ namespace Rg.Plugins.Popup.Services
         private bool CanBeAnimated(bool animate)
         {
             return animate && PopupPlatform.IsSystemAnimationEnabled;
-        }
-
-        #endregion
-
-        #region Helpers
-
-        Task InvokeThreadSafe(Func<Task> action)
-        {
-            var tcs = new TaskCompletionSource<bool>();
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                try
-                {
-                    await action.Invoke();
-                    tcs.SetResult(true);
-                }
-                catch (Exception e)
-                {
-                    tcs.SetException(e);
-                }
-            });
-
-            return tcs.Task;
         }
 
         #endregion
