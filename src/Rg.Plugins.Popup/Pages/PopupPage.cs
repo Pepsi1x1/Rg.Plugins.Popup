@@ -12,8 +12,10 @@ namespace Rg.Plugins.Popup.Pages
     {
         #region Private
 
-        private const string IsAnimatingObsoleteText = 
-            nameof(IsAnimating) + 
+        private const string IsAnimatingObsoleteText =
+#pragma warning disable CS0618 // Type or member is obsolete
+            nameof(IsAnimating) +
+#pragma warning restore CS0618 // Type or member is obsolete
             " is obsolute as of v1.1.5. Please use "
             +nameof(IsAnimationEnabled) + 
             " instead. See more info: "
@@ -146,6 +148,12 @@ namespace Rg.Plugins.Popup.Pages
                 case nameof(IsAnimationEnabled):
                     IsAnimating = IsAnimationEnabled;
                     break;
+                default:
+                    {
+                        //Do nothing
+                        break;
+                    }
+                    
             }
         }
 

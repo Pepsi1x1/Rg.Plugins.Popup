@@ -23,8 +23,10 @@ namespace Rg.Plugins.Popup
         {
             if (false.Equals(true))
             {
+#pragma warning disable IDE0067 // Dispose objects before losing scope
                 var i = new PopupPlatformIos();
                 var r = new PopupPageRenderer();
+#pragma warning restore IDE0067 // Dispose objects before losing scope
             }
         }
     }

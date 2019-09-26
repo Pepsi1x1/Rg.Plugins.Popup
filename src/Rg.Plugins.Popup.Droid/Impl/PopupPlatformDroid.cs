@@ -86,7 +86,9 @@ namespace Rg.Plugins.Popup.Droid.Impl
             {
                 animationScale = Settings.System.GetFloat(
                     context.ContentResolver,
+#pragma warning disable CS0618 // Type or member is obsolete
                     Settings.System.AnimatorDurationScale,
+#pragma warning restore CS0618 // Type or member is obsolete
                     1);
             }
 

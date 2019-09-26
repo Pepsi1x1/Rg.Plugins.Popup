@@ -57,8 +57,10 @@ namespace Rg.Plugins.Popup
         {
             if (false.Equals(true))
             {
+#pragma warning disable IDE0067 // Dispose objects before losing scope
                 var i = new PopupPlatformDroid();
                 var r = new PopupPageRenderer(null);
+#pragma warning restore IDE0067 // Dispose objects before losing scope
             }
         }
     }
