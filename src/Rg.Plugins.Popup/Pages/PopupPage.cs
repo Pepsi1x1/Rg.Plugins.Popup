@@ -296,6 +296,7 @@ namespace Rg.Plugins.Popup.Pages
 
         #region Internal Methods
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Potential Code Quality Issues", "RECS0165:Asynchronous methods should return a Task instead of void", Justification = "Event should be fire and forget")]
         internal async void SendBackgroundClick()
         {
             BackgroundClicked?.Invoke(this, EventArgs.Empty);
