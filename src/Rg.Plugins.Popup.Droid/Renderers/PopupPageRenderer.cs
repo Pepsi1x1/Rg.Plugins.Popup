@@ -211,7 +211,7 @@ namespace Rg.Plugins.Popup.Droid.Renderers
             {
                 if (ChildCount > 0 && !IsInRegion(e.RawX, e.RawY, GetChildAt(0)) || ChildCount == 0)
                 {
-                    CurrentElement.SendBackgroundClick().Wait();
+                    CurrentElement.SendBackgroundClick();
                     return false;
                 }
             }
@@ -227,7 +227,7 @@ namespace Rg.Plugins.Popup.Droid.Renderers
             var isInRegion = IsInRegion(e.RawX, e.RawY, GetChildAt(0));
 
             if (!isInRegion)
-                CurrentElement.SendBackgroundClick().Wait();
+                CurrentElement.SendBackgroundClick();
         }
 
         // Fix for "CloseWhenBackgroundIsClicked not works on Android with Xamarin.Forms 2.4.0.280" #173

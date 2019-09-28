@@ -296,7 +296,7 @@ namespace Rg.Plugins.Popup.Pages
 
         #region Internal Methods
 
-        internal async Task SendBackgroundClick()
+        internal async void SendBackgroundClick()
         {
             BackgroundClicked?.Invoke(this, EventArgs.Empty);
 
